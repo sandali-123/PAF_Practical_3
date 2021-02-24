@@ -3,10 +3,14 @@
 pageEncoding="ISO-8859-1"%>
 <%
 if (request.getParameter("itemCode") != null) 
-{ 
+ { 
  Item itemObj = new Item(); 
- itemObj.connect();//For testing the connect method
-}
+ String stsMsg = itemObj.insertItem(request.getParameter("itemCode"), 
+ request.getParameter("itemName"), 
+ request.getParameter("itemPrice"), 
+ request.getParameter("itemDesc")); 
+ session.setAttribute("statusMsg", stsMsg); 
+ } 
 %>
 <!DOCTYPE html>
 <html> <head> <meta charset="ISO-8859-1"> <title>Items Management</title>
