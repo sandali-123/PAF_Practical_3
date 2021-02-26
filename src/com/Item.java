@@ -32,6 +32,7 @@ public class Item {
 	}
 	
 	
+	//insert items
 	public String insertItem(String code, String name, String price, String desc)
 	{ 
 	 String output = ""; 
@@ -105,10 +106,10 @@ public class Item {
 		 output += "<td>" + itemDesc + "</td>";
 		 // buttons
 		 output += "<td><input name='btnUpdate' " 
-		 + " type='button' value='Update' onclick = ></td>"
+		 + " type='button' value='Update' onclick = 'UpdateItems()' ></td>"
 		 + "<td><form method='post' action='items.jsp'>"
 		 + "<input name='btnRemove' " 
-		 + " type='submit' value='Remove'>"
+		 + " type='submit' value='Remove' onclick= 'deleteItems()'>"
 		 + "<input name='itemID' type='hidden' " 
 		 + " value='" + itemID + "'>" + "</form></td></tr>"; 
 		 } 
@@ -126,7 +127,7 @@ public class Item {
 		return output; 
 	}
 	
-	
+	//Update items
 	public String UpdateItems(String itemID,String code, String name, String price, String desc)
 	{
 		
@@ -142,11 +143,7 @@ public class Item {
 			 String query = " Update items set itemCode='"+code+"',itemName = '"+name+"',itemPrice = '"+price+"',itemDesc = '"+desc+"'"
 					 + "where itemID ='"+itemID+"'";
 			 PreparedStatement preparedStmt = con.prepareStatement(query); 
-			/*
-			 * // binding values preparedStmt.setInt(1, 0); preparedStmt.setString(2, code);
-			 * preparedStmt.setString(3, name); preparedStmt.setDouble(4,
-			 * Double.parseDouble(price)); preparedStmt.setString(5, desc);
-			 */
+			
 			//execute the statement
 			 preparedStmt.execute(); 
 			 con.close(); 
@@ -160,6 +157,8 @@ public class Item {
 			return output; 
 		
 	}
+	
+	//delete items
 	public static boolean deleteItems(String itemID) {
 		
 		int convertedID = Integer.parseInt(itemID);
